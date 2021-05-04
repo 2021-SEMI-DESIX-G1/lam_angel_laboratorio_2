@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Laboratorio #2</title>
+  </head>
+  <body>
+    <header>
+      <h1>Laboratorio #2 - Problemas Básicos con Javascript</h1>
+    </header>
+    <main>
+      <article>
+        <section>
+          <div id="title">
+            <p>¿Qué es Javascript y en qué se asemeja a Java?</p>
+          </div>
+          <div id="cardContainers">
+            <div class="cardDetails">
+              <p>
+                Javascript es un lenguaje de programación multiplataforma,
+                orientada a objetos basada en la especificación llamado o
+                ECMAScript estandarizado por Ecma International.
+              </p>
+            </div>
+            <div class="cardDetails">
+              <p>
+                Además de HTML y CSS, Javascript es una de las tecnologías
+                fundamamentales de la WWW (World Wide Web). Casi el 97% de las
+                páginas usa su lado-cliente para el comportamiento de la página.
+              </p>
+            </div>
+            <div class="cardDetails">
+              <p>
+                Javascript y Java ambos tienen soporte multiplataforma, en Java
+                tiene JVM (Máquina Virtual Java) disponible para muchos sistemas
+                operativos, y en Javascript porque los navegadores web están
+                disponibles para todos los usuarios de todos los sistemas
+                operativos.
+              </p>
+            </div>
+          </div>
+        </section>
+      </article>
+    </main>
+  </body>
+  <script>
+    //PARTE II
+    const sum = (num1, num2) => num1 + num2;
+    const subtract = (num1, num2) => num1 - num2;
+    const multiplicate = (num1, num2) => num1 * num2;
+    const divide = (num1, num2) => num1 / num2;
+
+    var num1 = Math.floor(Math.random() * 10);
+    var num2 = Math.floor(Math.random() * 10);
+    var printResults =
+      `Número 1️⃣: ${num1} \n` +
+      `Número 2️⃣: ${num2} \n` +
+      `\x1b[0mSuma: ${sum(num1, num2)}\x1b[0m \n` +
+      `Resta: ${subtract(num1, num2)} \n` +
+      `Multiplicación: ${multiplicate(num1, num2)} \n` +
+      `División: ${divide(num1, num2)} \n`;
+
+    console.log(printResults);
+
+    // PARTE III
+    let word1 = "Hola";
+    let word2 = "Mundo";
+    console.log(word1.concat(" " + word2), word1 + " " + word2);
+
+    // PARTE IV
+    const type1 = "100";
+    const type2 = 100;
+
+    const printTypes = `Javascript is fun 😓\nvariable 1: ${type1} ➡ ${typeof type1} \nvariable 2: ${type2} ➡ ${typeof type2}`;
+
+    console.log(printTypes);
+
+    // PARTE V
+    const nestedStuff = {
+      number: 2,
+      nestedOnce: {
+        string: "Soy un string",
+        nestedTwice: {
+          boolean: false,
+          nestedThrice: {
+            object: {},
+          },
+        },
+      },
+    };
+
+    console.log(nestedStuff);
+
+    //Extras
+  </script>
+</html>
+
+<!-- Resolver.
+Los siguientes problemas usando Javascript, ejecutado dentro un archivo de HTML:
+
+Escribir en una etiqueta "p" dentro del HTML, la respuesta a la pregunta. ¿Qué es Javascript y en qué se asemeja a Java?
+
+Declarar dos variables con la palabra reservada "var", imprimir 
+el resultado de las operaciones de "Suma", "Resta", "Multiplicación" y 
+"División" en la consola. Las variables pueden ser estáticas.
+
+Declarar dos variables con la palabra reservada "let", imprimir la concatenación de ellas.
+
+Declarar dos variables con la palabra reservada "const", imprimir cuál es el tipo de dato de esa variable.
+
+Declarar una variable tipo Objecto, colocar 4 llaves dentro de él que contengan un entero, un string, un booleano y un objeto vacío, en ese mismo orden.
+
+Notas:
+Las cuatro operaciones deben ser ejecutadas en un mismo archivo de HTML/JS.
+No se permite la importación de ninguna librería como dependecia.
+El trabajo se debe realizar de forma individual.-->
