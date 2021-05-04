@@ -1,100 +1,556 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Laboratorio #2</title>
-  </head>
-  <body>
-    <header>
-      <h1>Laboratorio #2 - Problemas Básicos con Javascript</h1>
-    </header>
-    <main>
-      <article>
-        <section>
-          <div id="title">
-            <p>¿Qué es Javascript y en qué se asemeja a Java?</p>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratorio #2</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* HEADER */
+    a,
+    a:active,
+    a:visited {
+      text-decoration: none;
+      color: black;
+    }
+
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      text-align: center;
+      background-color: rgb(0, 102, 150, 0.5);
+      color: white;
+      position: sticky;
+      top:0px;
+      font-size:1.5rem;
+      padding:20px;
+    }
+
+    nav {
+      text-align: center;
+      position: relative;
+      cursor:pointer;
+      transition: all 0.5s;
+    }
+
+    nav:hover {
+      transform:scale(1.2);
+    }
+
+    ul {
+      position: absolute;
+      width: 100%;
+      list-style: none;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    nav:hover ul {
+      transition: all 0.5s;
+      visibility: visible;
+      opacity: 1;
+      
+    }
+
+    ul li {
+      background-color: aliceblue;
+      padding: 5px;
+      transition: all 0.2s;
+    }
+
+    ul li:hover {
+      background-color: rgb(199, 158, 45);
+      transition: all 0.2s;
+    }
+
+    #link-owner {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+        transition: all 0.1s;
+    }
+
+    #link-owner:hover {
+      transform:scale(1.2);
+      transition: all 0.1s;
+    }
+
+    #owner-name {
+      margin-left: 5px;
+      color: white;
+    }
+
+    /* PART 1 */
+    #part1 {
+      background-image: url("https://www.intexsoft.com/images/intexsoft/blog/java-vs-node/node-vs-java.png");
+      background-size: cover;
+      background-position: center;
+    }
+
+    #titleContainer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 15rem;
+      font-size: 3rem;
+    }
+
+    #titleContainer p {
+      padding: 10px;
+      text-align: center;
+      color: #f9dd3c;
+      font-weight: bold;
+    }
+
+    /* CARDS */
+    .cardContainer {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 20px;
+    }
+
+    .cardDetails {
+      flex: 1 1 350px;
+      background-color: rgba(251, 220, 62, 0.8);
+      border: 1px solid #020808;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 1px 1px 10px #020808;
+      margin: 5px;
+      font-size: 1.6rem;
+      transition: all 0.2s;
+    }
+
+    .cardDetails:hover {
+      transform: scale(1.05);
+      transition: all 0.2s;
+    }
+
+    /* PART II*/
+    #part2y3 {
+      background-image: url("https://www.wallpapertip.com/wmimgs/83-838172_programming-javascript.jpg");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    #part2 {
+      flex: 2 1 300px;
+    }
+
+    #part3 {
+      flex: 1 1 200px;
+      align-self: center;
+    }
+
+    .prompt {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      padding: 20px;
+      color: white;
+      font-size: 2rem;
+    }
+
+    .prompt p {
+      margin-top: 10px;
+      font-size: 1.5rem;
+    }
+
+    .operationCards {
+      display: flex;
+      flex: 1 1 175px;
+      flex-direction: column;
+      background-color: rgba(255, 255, 255, 0.6);
+      border: 1px solid black;
+      border-radius: 6px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 1px 1px 10px #020808;
+      margin: 5px;
+    }
+
+
+    .operationCards:hover {
+      transform: scale(1.05);
+      transition: all 0.2s;
+    }
+
+    .inputContainer {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .inputField {
+      text-align: center;
+      width: 85px;
+      flex: 1 1 100px;
+      margin: 5px;
+      font-size: 1.5rem;
+      background-color: rgba(9, 43, 62, 0.8);
+      color: white;
+    }
+
+    input[type="submit"] {
+      font-size: 1.2rem;
+      margin: 10px auto;
+      padding: 10px;
+      text-align: center;
+      background-color: rgb(0, 102, 150, 0.5);
+      color:white;
+      font-weight: bold;
+
+    }
+
+    input[type="submit"]:hover {
+      cursor: pointer;
+    }
+
+    input[type="number"]::-webkit-inner-spin-button {
+      opacity: 1;
+    }
+
+    .resultInput {
+      font-size: 2rem;
+      border-radius: 7px;
+      background-color: rgba(9, 43, 62, 0.6);
+      color: white;
+      margin: 5px auto;
+      width: 100%;
+      text-align:center;
+    }
+
+    /* PART IV y 5 */
+    #part4y5 {
+      background-image: url('https://dreamix.eu/blog/wp-content/uploads/2016/06/wallpaper-29.jpg');
+      background-size: cover;
+      background-position: center;
+      display:flex;
+    }
+
+    #part4 {
+      flex:1 1 250px;
+    }
+
+    #part5 {
+      flex:1 1 250px;
+    }
+
+    #resultTextArea {
+      resize: none;
+      font-size:1rem;
+      height:250px;
+      text-align: start;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div id="owner-data">
+      <a id="link-owner" target="_blank" href="https://github.com/2021-SEMI-DESIX-G1/lam_angel_laboratorio_2">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" aria-hidden="true"
+          focusable="false" width="1.5em" height="1.5em" style="
+              -ms-transform: rotate(360deg);
+              -webkit-transform: rotate(360deg);
+              transform: rotate(360deg);
+            " preserveAspectRatio="xMidYMid meet" viewBox="0 0 256 250">
+          <path
+            d="M128.001 0C57.317 0 0 57.307 0 128.001c0 56.554 36.676 104.535 87.535 121.46c6.397 1.185 8.746-2.777 8.746-6.158c0-3.052-.12-13.135-.174-23.83c-35.61 7.742-43.124-15.103-43.124-15.103c-5.823-14.795-14.213-18.73-14.213-18.73c-11.613-7.944.876-7.78.876-7.78c12.853.902 19.621 13.19 19.621 13.19c11.417 19.568 29.945 13.911 37.249 10.64c1.149-8.272 4.466-13.92 8.127-17.116c-28.431-3.236-58.318-14.212-58.318-63.258c0-13.975 5-25.394 13.188-34.358c-1.329-3.224-5.71-16.242 1.24-33.874c0 0 10.749-3.44 35.21 13.121c10.21-2.836 21.16-4.258 32.038-4.307c10.878.049 21.837 1.47 32.066 4.307c24.431-16.56 35.165-13.12 35.165-13.12c6.967 17.63 2.584 30.65 1.255 33.873c8.207 8.964 13.173 20.383 13.173 34.358c0 49.163-29.944 59.988-58.447 63.157c4.591 3.972 8.682 11.762 8.682 23.704c0 17.126-.148 30.91-.148 35.126c0 3.407 2.304 7.398 8.792 6.14C219.37 232.5 256 184.537 256 128.002C256 57.307 198.691 0 128.001 0zm-80.06 182.34c-.282.636-1.283.827-2.194.39c-.929-.417-1.45-1.284-1.15-1.922c.276-.655 1.279-.838 2.205-.399c.93.418 1.46 1.293 1.139 1.931zm6.296 5.618c-.61.566-1.804.303-2.614-.591c-.837-.892-.994-2.086-.375-2.66c.63-.566 1.787-.301 2.626.591c.838.903 1 2.088.363 2.66zm4.32 7.188c-.785.545-2.067.034-2.86-1.104c-.784-1.138-.784-2.503.017-3.05c.795-.547 2.058-.055 2.861 1.075c.782 1.157.782 2.522-.019 3.08zm7.304 8.325c-.701.774-2.196.566-3.29-.49c-1.119-1.032-1.43-2.496-.726-3.27c.71-.776 2.213-.558 3.315.49c1.11 1.03 1.45 2.505.701 3.27zm9.442 2.81c-.31 1.003-1.75 1.459-3.199 1.033c-1.448-.439-2.395-1.613-2.103-2.626c.301-1.01 1.747-1.484 3.207-1.028c1.446.436 2.396 1.602 2.095 2.622zm10.744 1.193c.036 1.055-1.193 1.93-2.715 1.95c-1.53.034-2.769-.82-2.786-1.86c0-1.065 1.202-1.932 2.733-1.958c1.522-.03 2.768.818 2.768 1.868zm10.555-.405c.182 1.03-.875 2.088-2.387 2.37c-1.485.271-2.861-.365-3.05-1.386c-.184-1.056.893-2.114 2.376-2.387c1.514-.263 2.868.356 3.061 1.403z"
+            fill="#161614" />
+        </svg>
+        <span id="owner-name">Angel Lam</span>
+      </a>
+    </div>
+    <div id="main-title">
+      Laboratorio #2 - Problemas Básicos con Javascript
+    </div>
+    <nav id="nav-parts">
+      <span>Navegación</span>
+      <ul>
+        <a href="#part1">
+          <li>Parte I</li>
+        </a>
+        <a href="#part2">
+          <li>Parte II</li>
+        </a>
+        <a href="#part3">
+          <li>Parte III</li>
+        </a>
+        <a href="#part4">
+          <li>Parte IV</li>
+        </a>
+        <a href="#part5">
+          <li>Parte V</li>
+        </a>
+      </ul>
+    </nav>
+  </header>
+  <main>
+    <article id="part1">
+      <section id="titleContainer">
+        <p>¿Qué es Javascript y en qué se asemeja a Java?</p>
+      </section>
+      <section class="cardContainer">
+        <div class="cardDetails">
+          <p>
+            Javascript es un lenguaje de programación multiplataforma,
+            orientada a objetos basada en la especificación llamado o
+            ECMAScript estandarizado por Ecma International.
+          </p>
+        </div>
+        <div class="cardDetails">
+          <p>
+            Además de HTML y CSS, Javascript es una de las tecnologías
+            fundamamentales de la WWW (World Wide Web). Casi el 97% de las
+            páginas usa su lado-cliente para el comportamiento de la página.
+          </p>
+        </div>
+        <div class="cardDetails">
+          <p>
+            Javascript y Java ambos tienen soporte multiplataforma, en Java
+            tiene JVM (Máquina Virtual Java) disponible para muchos sistemas
+            operativos, y en Javascript porque los navegadores web están
+            disponibles para todos los usuarios de todos los sistemas
+            operativos.
+          </p>
+        </div>
+      </section>
+    </article>
+    <article id="part2y3">
+      <div id="part2">
+        <section class="prompt">
+          <h1>Parte II</h1>
+          <p>
+            Declarar dos variables con la palabra reservada "var", imprimir el
+            resultado de las operaciones de "Suma", "Resta", "Multiplicación" y
+            "División" en la consola. Las variables pueden ser estáticas.
+          </p>
+        </section>
+        <section class="cardContainer">
+          <div class="operationCards" id="sumCard">
+            <h2>Suma</h2>
+            <div class="inputContainer">
+              <input type="number" class="inputField" name="sum1" id="sum1" placeholder="10" />
+              <input type="number" class="inputField" name="sum2" id="sum2" placeholder="5" />
+            </div>
+            <input type="submit" value="Sumar" onClick="sumNumbers()" />
+            <input type="text" class="resultInput" name="resultSum" id="resultSum" readonly />
           </div>
-          <div id="cardContainers">
-            <div class="cardDetails">
-              <p>
-                Javascript es un lenguaje de programación multiplataforma,
-                orientada a objetos basada en la especificación llamado o
-                ECMAScript estandarizado por Ecma International.
-              </p>
+          <div class="operationCards" id="subtractCard">
+            <h2>Resta</h2>
+            <div class="inputContainer">
+              <input type="number" class="inputField" name="subtract1" id="subtract1" placeholder="20" />
+              <input type="number" class="inputField" name="subtract2" id="subtract2" placeholder="3" />
             </div>
-            <div class="cardDetails">
-              <p>
-                Además de HTML y CSS, Javascript es una de las tecnologías
-                fundamamentales de la WWW (World Wide Web). Casi el 97% de las
-                páginas usa su lado-cliente para el comportamiento de la página.
-              </p>
+            <input type="submit" value="Restar" onClick=subtractNumbers() />
+            <input type="text" class="resultInput" name="resultSubtract" id="resultSubtract" readonly />
+          </div>
+          <div class="operationCards" id="multiplicateCard">
+            <h2>Multiplicación</h2>
+            <div class="inputContainer">
+              <input type="number" class="inputField" name="multi1" id="multi1" placeholder="3" />
+              <input type="number" class="inputField" name="multi2" id="multi2" placeholder="7" />
             </div>
-            <div class="cardDetails">
-              <p>
-                Javascript y Java ambos tienen soporte multiplataforma, en Java
-                tiene JVM (Máquina Virtual Java) disponible para muchos sistemas
-                operativos, y en Javascript porque los navegadores web están
-                disponibles para todos los usuarios de todos los sistemas
-                operativos.
-              </p>
+            <input type="submit" value="Multiplicar" onClick=multiNumbers() />
+            <input type="text" class="resultInput" name="resultMultiplicate" id="resultMultiplicate" readonly />
+          </div>
+          <div class="operationCards" id="divideCard">
+            <h2>División</h2>
+            <div class="inputContainer">
+              <input type="number" class="inputField" name="divide1" id="divide1" placeholder="25" />
+              <input type="number" class="inputField" name="divide2" id="divide2" placeholder="5" />
             </div>
+            <input type="submit" value="Dividir" onClick=divideNumbers() />
+            <input type="text" class="resultInput" name="resultDivide" id="resultDivide" readonly />
+          </div>
+      </div>
+      <div id="part3">
+        <section class="cardContainer">
+          <div class="operationCards" id="concatCard">
+            <h2>Concatenación</h2>
+            <div class="inputContainer">
+              <input type="text" name="string1" id="string1" class="inputField" placeholder="Hello" />
+              <input type="text" name="string2" id="string2" class="inputField" placeholder="World" />
+            </div>
+            <input type="submit" value="Concatenar" onClick=joinStrings() />
+            <input type="text" class="resultInput" name="resultString" id="resultString" readonly />
           </div>
         </section>
-      </article>
-    </main>
-  </body>
-  <script>
-    //PARTE II
-    const sum = (num1, num2) => num1 + num2;
-    const subtract = (num1, num2) => num1 - num2;
-    const multiplicate = (num1, num2) => num1 * num2;
-    const divide = (num1, num2) => num1 / num2;
+        <section class="prompt">
+          <h1>Parte III</h1>
+          <p>
+            Declarar dos variables con la palabra reservada "let", imprimir la
+            concatenación de ellas.
+          </p>
+        </section>
+      </div>
+    </article>
+    <article id="part4y5">
+      <section id='part4'>
+        <div class="prompt">
+          <h1>Parte IV</h1>
+          <p>Declarar dos variables con la palabra reservada "const", imprimir cuál es el tipo de dato de esa variable.
+          </p>
+        </div>
+        <section class="cardContainer">
+          <div class="operationCards" id="concatCard">
+            <h2>Tipo de Dato</h2>
+            <div class="inputContainer">
+              <input type="text" name="type1" id="type1" class="inputField" placeholder="Valor" />
+            </div>
+            <input type="submit" value="Tipo" onclick="checkType()"/>
+            <input type="text" class="resultInput" name="resultType" id="resultType" readonly />
+          </div>
+        </section>
+      </section>
+      <section id="part5">
+        <section class="cardContainer">
+          <div class="operationCards" id="concatCard">
+            <h2>Objeto con 4 Llaves</h2>
+            <textarea class="resultInput" name="resultTextArea" id="resultTextArea" readonly>
+              </textarea>
+          </div>
+        </section>
+        <div class="prompt">
+          <h1>Parte V</h1>
+          <p>Declarar una variable tipo Objeto, colocar 4 llaves dentro de él que contengan un entero, un string, un
+            booleano y un objeto vacío, en ese mismo orden.</p>
+        </div>
+      </section>
+    </article>
+  </main>
+</body>
+<script>
+  //PARTE II
+  const sum = (num1, num2) => num1 + num2;
+  const subtract = (num1, num2) => num1 - num2;
+  const multiplicate = (num1, num2) => num1 * num2;
+  const divide = (num1, num2) => num1 / num2;
 
-    var num1 = Math.floor(Math.random() * 10);
-    var num2 = Math.floor(Math.random() * 10);
-    var printResults =
-      `Número 1️⃣: ${num1} \n` +
-      `Número 2️⃣: ${num2} \n` +
-      `\x1b[0mSuma: ${sum(num1, num2)}\x1b[0m \n` +
-      `Resta: ${subtract(num1, num2)} \n` +
-      `Multiplicación: ${multiplicate(num1, num2)} \n` +
-      `División: ${divide(num1, num2)} \n`;
+  var num1 = Math.floor(Math.random() * 10);
+  var num2 = Math.floor(Math.random() * 10);
+  var printResults =
+    `Número 1️⃣: ${num1} \n` +
+    `Número 2️⃣: ${num2} \n` +
+    `\x1b[0mSuma: ${sum(num1, num2)}\x1b[0m \n` +
+    `Resta: ${subtract(num1, num2)} \n` +
+    `Multiplicación: ${multiplicate(num1, num2)} \n` +
+    `División: ${divide(num1, num2)} \n`;
 
-    console.log(printResults);
+  console.log(printResults);
 
-    // PARTE III
-    let word1 = "Hola";
-    let word2 = "Mundo";
-    console.log(word1.concat(" " + word2), word1 + " " + word2);
+  // PARTE III
+  let word1 = "Hola";
+  let word2 = "Mundo";
+  console.log(word1.concat(" " + word2), word1 + " " + word2);
 
-    // PARTE IV
-    const type1 = "100";
-    const type2 = 100;
+  // PARTE IV
+  const type1 = "100";
+  const type2 = 100;
 
-    const printTypes = `Javascript is fun 😓\nvariable 1: ${type1} ➡ ${typeof type1} \nvariable 2: ${type2} ➡ ${typeof type2}`;
+  const printTypes = `Javascript is fun 😓\nvariable 1: ${type1} ➡ ${typeof type1} \nvariable 2: ${type2} ➡ ${typeof type2}`;
 
-    console.log(printTypes);
+  console.log(printTypes);
 
-    // PARTE V
-    const nestedStuff = {
-      number: 2,
-      nestedOnce: {
-        string: "Soy un string",
-        nestedTwice: {
-          boolean: false,
-          nestedThrice: {
-            object: {},
-          },
+  // PARTE V
+  const nestedStuff = {
+    number: 2,
+    nestedOnce: {
+      string: "Soy un string",
+      nestedTwice: {
+        boolean: false,
+        nestedThrice: {
+          object: {},
         },
       },
-    };
+    },
+  };
 
-    console.log(nestedStuff);
+  console.log(nestedStuff);
 
-    //Extras
-  </script>
+  //EXTRAS
+  const sumNumbers = () => {
+    var num1 = document.getElementById('sum1').value;
+    var num2 = document.getElementById('sum2').value;
+    var result = Number(num1) + Number(num2);
+    document.getElementById('resultSum').value = result;
+  }
+
+  const subtractNumbers = () => {
+    var num1 = document.getElementById('subtract1').value;
+    var num2 = document.getElementById('subtract2').value;
+    var result = Number(num1) - Number(num2);
+    document.getElementById('resultSubtract').value = result;
+  }
+
+  const multiNumbers = () => {
+    var num1 = document.getElementById('multi1').value;
+    var num2 = document.getElementById('multi2').value;
+    var result = Number(num1) * Number(num2);
+    document.getElementById('resultMultiplicate').value = result;
+  }
+
+  const divideNumbers = () => {
+    var num1 = document.getElementById('divide1').value;
+    var num2 = document.getElementById('divide2').value;
+    var result = Number(num1) / Number(num2);
+    document.getElementById('resultDivide').value = result;
+  }
+
+  const joinStrings = () => {
+    let string1 = document.getElementById('string1').value;
+    let string2 = document.getElementById('string2').value;
+    let result = string1.concat(string2);
+    document.getElementById('resultString').value = result;
+  }
+
+  const checkType = () => {
+    const type1 = document.getElementById('type1').value;
+    if (Number(type1)){
+       document.getElementById('resultType').value = 'number';
+    } else if (type1[0] == '[' && type1[type1.length-1] == ']'){
+      document.getElementById('resultType').value = 'array';
+    } else if (type1[0] == '{' && type1[type1.length-1] == '}'){
+      document.getElementById('resultType').value = 'object';
+    }
+     else {
+      document.getElementById('resultType').value = 'string';
+    }
+  }
+  
+  document.getElementById('resultTextArea').innerHTML = `
+  {
+    number: 2,
+    nestedOnce: {
+      string: "Soy un string",
+      nestedTwice: {
+        boolean: false,
+        nestedThrice: {
+          object: {},
+        },
+      },
+    },
+  };`;
+
+</script>
+
 </html>
 
 <!-- Resolver.
